@@ -73,12 +73,12 @@
                     <Button FontSize="18" Content="Check votes" Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,5,5"/>
                     <TextBlock Text="Guests" FontSize="20" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Margin="165,0,0,0" />
                     <ScrollViewer Width="286" VerticalScrollBarVisibility="Auto"  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="0,5,0,5">
-                        <ItemsControl Width="auto" HorizontalContentAlignment="Center" ItemsSource="{Binding SelectedDetail.usernames}">
+                        <ItemsControl Width="auto" HorizontalContentAlignment="Center" ItemsSource="{Binding SelectedDetail.Guests}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border BorderThickness="1" BorderBrush="Gray">
                                         <Grid HorizontalAlignment="Center">
-                                            <TextBlock FontSize="18" Text="{Binding}" HorizontalAlignment="Left"/>
+                                            <TextBlock FontSize="18" Text="{Binding AccountName}" HorizontalAlignment="Left"/>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>

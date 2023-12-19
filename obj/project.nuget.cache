@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "HFA/aUWXwdOpyGGDlXAl/yUjOem029DXjkc9gzeX3/vD0ghDsj9Xh1dRMTw6V+C8wZIOzQq0MdjJD2Mp1SqoWw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Astrynx\\Desktop\\IUR\\semestral\\ms\\ms.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Astrynx\\.nuget\\packages\\extended.wpf.toolkit\\4.5.1\\extended.wpf.toolkit.4.5.1.nupkg.sha512",
+    "C:\\Users\\Astrynx\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

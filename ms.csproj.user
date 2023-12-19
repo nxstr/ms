@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="EventDetailPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EventInfoPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LoginUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LogoutPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NewEventPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="OwnedEventsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="EventDetailPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EventInfoPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LoginUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LogoutPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NewEventPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="OwnedEventsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

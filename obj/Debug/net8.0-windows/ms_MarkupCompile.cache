@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Astrynx\Desktop\IUR\semestral\ms\App.xaml
-72049661342
+11-250883880
 
-18-1725983053
+25-414677154
 204-1231033724
-EventDetailPage.xaml;EventInfoPage.xaml;LoginUser.xaml;LogoutPage.xaml;MainWindow.xaml;NewEventPage.xaml;OwnedEventsPage.xaml;
+EventDetailPage.xaml;EventInfoPage.xaml;LoginUser.xaml;LogoutPage.xaml;MainWindow.xaml;MyProfilePage.xaml;NewEventPage.xaml;OwnedEventsPage.xaml;RegisterPage.xaml;Themes\ButtonStyles.xaml;VotePage.xaml;
 
 False
 

@@ -8,17 +8,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
-        <Grid DockPanel.Dock="Top">
+        <Grid DockPanel.Dock="Top" Style="{StaticResource Header}">
             <StackPanel Orientation="Horizontal" >
-                <Grid Width="800">
+                <Grid Width="780">
                     <Border Height="50" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     </Border>
-                    <TextBlock Text="Event Settings" FontSize="30" VerticalAlignment="Center"/>
-                    <Button Content="Save" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="636,0,0,0" Command="{Binding SaveCommand}"/>
-                    <Button Content="Cancel" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="713,0,0,0" Command="{Binding CancelCommand}"/>
+                    <TextBlock Text="Event Settings" FontSize="30" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
+                    <Button Content="Save" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="600,0,0,0" Command="{Binding SaveCommand}" Style="{StaticResource HeaderButtons}"/>
+                    <Button Content="Cancel" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="680,0,0,0" Command="{Binding CancelCommand}" Style="{StaticResource HeaderButtons}"/>
                 </Grid>
             </StackPanel>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch">
+            <Border BorderBrush="#6159d9" BorderThickness="1" HorizontalAlignment="Stretch">
             </Border>
         </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -37,7 +37,7 @@
                     </Grid.RowDefinitions>
                     <TextBox Margin ="0,0,5,0"  Text="{Binding SelectedDetail.EventName, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"/>
                     <TextBox Margin ="0,36,5,0" Text="{Binding SelectedDetail.Location, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"/>
-                    <TextBox Margin="5,0,0,65" Text="{Binding SelectedDetail.Detail, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+                    <TextBox Margin="5,0,0,65" TextWrapping="WrapWithOverflow" Text="{Binding SelectedDetail.Detail, UpdateSourceTrigger=PropertyChanged}" FontSize="17" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
                     <Grid Grid.Row="0" VerticalAlignment="Top" Margin="0,65,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -68,10 +68,10 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </ScrollViewer>
-                    <Button FontSize="18" Content="Delete Option" Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,0,0" Command="{Binding DeleteOptionCommand}"/>
-                    <Button FontSize="18" Content="Set Option Final" Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,5,5" Command="{Binding SetFinalOptionCommand}"/>
+                    <Button FontSize="16" Content="Delete Option" Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,0,0" Command="{Binding DeleteOptionCommand}" />
+                    <Button FontSize="16" Content="Set Option Final" Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,5,5" Command="{Binding SetFinalOptionCommand}"/>
                     <xctk:DateTimePicker Margin ="5,5,5,5" Value="{Binding NewPollOption, UpdateSourceTrigger=PropertyChanged}"  FontSize="18" Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
-                    <Button FontSize="18" Content="Add Option" Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,5,5" Command="{Binding AddOptionCommand}"/>
+                    <Button FontSize="16" Content="Add Option" Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,5,2" Command="{Binding AddOptionCommand}"/>
                     <TextBlock Text="Guests" FontSize="20" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Margin="165,0,0,0" />
                     <ScrollViewer Width="286" VerticalScrollBarVisibility="Auto"  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" Margin="0,5,0,5">
                         <ListBox Width="auto" HorizontalContentAlignment="Center" ItemsSource="{Binding SelectedDetail.Guests}" SelectedItem="{Binding SelectedGuest}">
@@ -79,7 +79,7 @@
                                 <DataTemplate>
                                     <Border BorderThickness="1" BorderBrush="Gray">
                                         <Grid HorizontalAlignment="Center">
-                                            <TextBlock FontSize="18" Text="{Binding AccountName}" HorizontalAlignment="Left"/>
+                                            <TextBlock FontSize="18" Text="{Binding Username}" HorizontalAlignment="Left"/>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -87,11 +87,11 @@
                         </ListBox>
                     </ScrollViewer>
                     <TextBox Margin ="5,5,0,0" Text="{Binding NewUsername, UpdateSourceTrigger=PropertyChanged}" FontSize="18" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-                    <Button FontSize="18" Content="Add By Username" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="122,5,0,0" Command="{Binding AddUsernameCommand}"/>
-                    <Button FontSize="18" Content="Delete Guest" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,5,0" Grid.ColumnSpan="2" Command="{Binding DeleteGuestCommand}"/>
+                    <Button FontSize="16" Content="Add By Username" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="122,5,0,0" Command="{Binding AddUsernameCommand}"/>
+                    <Button FontSize="16" Content="Delete Guest" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,5,0" Grid.ColumnSpan="2" Command="{Binding DeleteGuestCommand}"/>
                     <TextBlock Margin ="5,28,0,0" x:Name="errorGuest" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="372"/>
-                    <TextBox Margin ="5,0,0,5" Text="{Binding NewEmail, UpdateSourceTrigger=PropertyChanged}" FontSize="18" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="123"/>
-                    <Button FontSize="18" Content="Add By Email" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="141,0,0,5" Command="{Binding AddEmailCommand}"/>
+                    <TextBox Margin ="5,0,0,5" Text="{Binding NewEmail, UpdateSourceTrigger=PropertyChanged}" FontSize="18" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="250"/>
+                    <Button FontSize="16" Content="Add By Email" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,5,5,2" Grid.ColumnSpan="2" Command="{Binding AddEmailCommand}"/>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

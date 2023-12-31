@@ -7,28 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
-        <Grid DockPanel.Dock="Top">
+        <Grid DockPanel.Dock="Top" Style="{StaticResource Header}">
             <StackPanel Orientation="Horizontal" >
-                <Grid Width="800">
+                <Grid Width="780">
                     <Border Height="50" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     </Border>
-                    <TextBlock Text="New Event" FontSize="30" VerticalAlignment="Center"/>
-                    <Button Content="Save" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="636,0,0,0" Command="{Binding SaveCommand}"/>
-                    <Button Content="Cancel" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="713,0,0,0" Command="{Binding CancelCommand}"/>
+                    <TextBlock Style ="{StaticResource HeaderText}" Text="New Event" FontSize="30" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    <Button Content="Save" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="600,0,0,0" Command="{Binding SaveCommand}" Style="{StaticResource HeaderButtons}"/>
+                    <Button Content="Cancel" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="680,0,0,0" Command="{Binding CancelCommand}" Style="{StaticResource HeaderButtons}"/>
                 </Grid>
             </StackPanel>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch">
+            <Border BorderBrush="#6159d9" BorderThickness="1" HorizontalAlignment="Stretch">
             </Border>
         </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Orientation="Vertical" Grid.Row="1" Margin="50">
-                <Label Content="Enter event name:" FontSize="20"/>
+            <StackPanel Orientation="Vertical" Grid.Row="1" Margin="40">
+                <Label Content="Enter event name:" FontSize="20" Style="{StaticResource CommonLabel}"/>
                 <TextBox Text="{Binding NewEvent.EventName, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
-                <Label Content="Enter event details:" FontSize="20"/>
+                <Label Content="Enter event details:" FontSize="20" Style="{StaticResource CommonLabel}"/>
                 <TextBox Text="{Binding NewEvent.Detail, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
-                <Label Content="Enter event location:" FontSize="20"/>
+                <Label Content="Enter event location:" FontSize="20" Style="{StaticResource CommonLabel}"/>
                 <TextBox Text="{Binding NewEvent.Location, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
-                <Label Content="Enter date, till which event will be opened:" FontSize="20"/>
+                <Label Content="Enter date, till which event will be opened:" FontSize="20" Style="{StaticResource CommonLabel}"/>
                 <DatePicker SelectedDate="{Binding NewEvent.TillDate, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
             </StackPanel>
         </ScrollViewer>

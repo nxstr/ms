@@ -1,6 +1,8 @@
 ﻿using ms.Utils;
+using ms.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -305,7 +307,7 @@ namespace ms
             {
                 foreach (var item in SelectedDetail.Guests)
                 {
-                    if (item.AccountName == NewUsername) { return false; }
+                    if (item.Username == NewUsername) { return false; }
                 }
             }
             return NewUsername != null;
@@ -338,7 +340,7 @@ namespace ms
         private void DeleteGuest(object parameter)
         {
             var res = false;
-            res = _r.DeleteGuest(SelectedDetail.id, SelectedGuest.id);
+            res = _r.DeleteGuest(SelectedDetail.id, SelectedGuest.Id);
             if (res)
             {
                 SelectedDetail = _r.GetEvent(SelectedDetail.id);
@@ -357,7 +359,7 @@ namespace ms
             res = _r.UpdateEvent(SelectedDetail);
             if (res)
             {
-                this.Content = new EventInfoPage(_r, SelectedDetail);
+                this.Content = new EventInfoPage(_r, SelectedDetail, false);
             }
         }
 
@@ -368,7 +370,7 @@ namespace ms
 
         private void CancelItem(object parameter)
         {
-            this.Content = new EventInfoPage(_r, SelectedDetail);
+            this.Content = new EventInfoPage(_r, SelectedDetail, false);
         }
 
         private bool CancelItemCanExecute(object parameter)

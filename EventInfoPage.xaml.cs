@@ -1,6 +1,8 @@
 ﻿using ms.Utils;
+using ms.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -29,18 +31,39 @@ namespace ms
         private RelayCommand _deleteCommand;
         private RelayCommand _editCommand;
         private RelayCommand _backCommand;
+        private RelayCommand _checkVotesCommand;
+        private bool _isGuest;
+        private ObservableCollection<UserModel> guestsDetails { get; set; }
+        = new ObservableCollection<UserModel>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         
-        public EventInfoPage(Requests r, EventModel details)
+        public EventInfoPage(Requests r, EventModel details, bool isGuest)
         {
             InitializeComponent();
-            DataContext = this;
+            
             _r = r;
             SelectedDetail = details;
             checkIfFinalExist();
+            _isGuest = isGuest;
+            if(isGuest)
+            {
+                Panel.Content = FindResource("GuestPanel");
+            }
+            else
+            {
+                Panel.Content = FindResource("OwnerPanel");
+            }
+            foreach(var guest in SelectedDetail.Guests)
+            {
+                guestsDetails.Add(_r.GetUser(guest.Id));
+            }
+            Details.ItemsSource = guestsDetails;
+            DataContext = this;
         }
+
+
 
         public EventModel SelectedDetail
         {
@@ -117,6 +140,14 @@ namespace ms
             }
         }
 
+        public RelayCommand CheckVotesCommand
+        {
+            get
+            {
+                return _checkVotesCommand ?? (_checkVotesCommand = new RelayCommand(CheckVotes, CheckVotesCanExecute));
+            }
+        }
+
         private void CloseItem(object parameter)
         {
             
@@ -145,7 +176,7 @@ namespace ms
             }
             if (res)
             {
-                this.Content = new OwnedEventsPage(_r);
+                this.Content = new OwnedEventsPage(_r, _isGuest);
             }
         }
 
@@ -166,10 +197,20 @@ namespace ms
 
         private void BackItem(object parameter)
         {
-            this.Content = new OwnedEventsPage(_r);
+            this.Content = new OwnedEventsPage(_r, _isGuest);
         }
 
         private bool BackItemCanExecute(object parameter)
+        {
+            return true;
+        }
+
+        private void CheckVotes(object parameter)
+        {
+            this.Content = new VotePage(_r, SelectedDetail, FinalOption, _isGuest);
+        }
+
+        private bool CheckVotesCanExecute(object parameter)
         {
             return true;
         }

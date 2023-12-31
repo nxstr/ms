@@ -7,9 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock FontSize="20" HorizontalAlignment="Center" Margin="0,122,0,0" TextWrapping="Wrap" Text="Welcome to Meeting Scheduler!" VerticalAlignment="Top"/>
+        <TextBlock FontSize="20" HorizontalAlignment="Center" Margin="0,122,0,0" TextWrapping="Wrap" Text="Welcome to Meeting Scheduler!" VerticalAlignment="Top" Style="{StaticResource CommonText}"/>
         <Button FontSize="20" Content="Log in" HorizontalAlignment="Center" Margin="0,182,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button FontSize="20" Content="Register" HorizontalAlignment="Center" Margin="0,231,0,0" VerticalAlignment="Top"/>
+        <Button FontSize="20" Content="Register" HorizontalAlignment="Center" Margin="0,231,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
 
     </Grid>
 </UserControl>

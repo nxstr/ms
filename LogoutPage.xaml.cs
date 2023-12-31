@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ms.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,16 +21,21 @@ namespace ms
     /// </summary>
     public partial class LogoutPage : UserControl
     {
-        public LogoutPage()
+        private Requests _r;
+        public LogoutPage(Requests r)
         {
             InitializeComponent();
-            
+            _r = r;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new LoginUser();
+            this.Content = new LoginUser(_r);
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Content = new RegisterPage(_r);
+        }
     }
 }

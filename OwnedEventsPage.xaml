@@ -6,8 +6,141 @@
              xmlns:local="clr-namespace:ms"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Key="DefaultTemplate">
+            <Border BorderThickness="1" BorderBrush="#6159d9" CornerRadius="8" Padding="4,0,4,0" Margin="0,0,0,10">
+                <Grid Height="150">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="270"/>
+                        <ColumnDefinition Width="130"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <TextBlock FontSize="18" Text="{Binding EventName}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image Source="/Icons/details-icon.png" Width="25" Height="25" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1" Height="50">
+                        <TextBlock FontSize="15" Text="{Binding Detail}"  HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="30,0,0,0" TextWrapping="WrapWithOverflow"/>
+                    </ScrollViewer>
+                    <Image Source="/Icons/location-icon.png" Width="25" Height="25" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock FontSize="18" Text="{Binding Location}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="30,0,0,0"/>
+                    <TextBlock FontSize="18" Text="Open Till: " Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Bottom"/>
+                    <TextBlock FontSize="18" Text="{Binding TillDate, StringFormat={}{0:yyyy-MM-dd}}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Bottom"/>
+                    <Label FontSize="18" Content="Poll Options" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"  Width="260"  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+                        <ItemsControl Width="auto" ItemsSource="{Binding eOptions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1" BorderBrush="Gray">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock FontSize="18" Text="{Binding DateSlot}" HorizontalAlignment="Left"/>
+                                            <TextBlock FontSize="18" Text="{Binding TimeSlot}" HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <Button FontSize="18" Content="Details" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,-29,0" Grid.Row="0"
+                                                                        Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+CommandParameter="{Binding}"/>
+                    <Button FontSize="18" Content="Delete" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,-29,0" Grid.Row="1" 
+                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+CommandParameter="{Binding}"/>
+                    <Button FontSize="18" Content="Close" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,-29,0" Grid.Row="2" IsEnabled="{Binding IsOpened, Mode=OneWay}"
+                                    Command="{Binding DataContext.CloseCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+CommandParameter="{Binding}"/>
+
+
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CustomTemplate">
+            <Border BorderThickness="1" BorderBrush="#6159d9" CornerRadius="8" Padding="4,0,4,0" Margin="0,0,0,10">
+                <Grid Height="150">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="270"/>
+                        <ColumnDefinition Width="130"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <TextBlock FontSize="18" Text="{Binding EventName}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Image Source="/Icons/details-icon.png" Width="25" Height="25" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1" Height="50">
+                        <TextBlock FontSize="15" Text="{Binding Detail}"  HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="30,0,0,0" TextWrapping="WrapWithOverflow"/>
+                    </ScrollViewer>
+                    <Image Source="/Icons/location-icon.png" Width="25" Height="25" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock FontSize="18" Text="{Binding Location}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="30,0,0,0"/>
+                    <TextBlock FontSize="18" Text="Open Till: " Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Bottom"/>
+                    <TextBlock FontSize="18" Text="{Binding TillDate, StringFormat={}{0:yyyy-MM-dd}}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Bottom"/>
+                    <Label FontSize="18" Content="Poll Options" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"  Width="260"  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+                        <ItemsControl Width="auto" ItemsSource="{Binding eOptions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1" BorderBrush="Gray">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock FontSize="18" Text="{Binding DateSlot}" HorizontalAlignment="Left"/>
+                                            <TextBlock FontSize="18" Text="{Binding TimeSlot}" HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+                    </ScrollViewer>
+                    <Button FontSize="18" Content="Details" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,-29,0" Grid.Row="0"
+                                                                        Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+CommandParameter="{Binding}"/>
+                    <Button FontSize="18" Content="Vote" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,-29,0" Grid.Row="1"
+                                                                        Command="{Binding DataContext.VoteCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+CommandParameter="{Binding}"/>
+
+                    <Button FontSize="18" Content="Leave" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,-29,0" Grid.Row="2" IsEnabled="{Binding IsOpened, Mode=OneWay}"
+                                    Command="{Binding DataContext.LeaveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+CommandParameter="{Binding}"/>
+
+
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
     <DockPanel>
-        <Grid DockPanel.Dock="Top">
+        <Grid DockPanel.Dock="Top" Style="{StaticResource Header}">
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <Border Height="50" Margin="0,0,0,0">
                     <ComboBox x:Name="dropdownMenu"   
@@ -18,15 +151,15 @@
                                     VerticalAlignment="Center"  
                                     BorderThickness="0"  
                                     VerticalContentAlignment="Center"  
-                                    Padding="0,0,0,0"   
-                                    Background="Transparent"  
-                                    Foreground="Black"  
+                                    Padding="0,0,0,0"    
+                                    Foreground="#6159d9"  
                                     IsEditable="True"   
-                                    Margin="0" SelectionChanged="ChangeMainSection">
+                                    Margin="5,0,5,0" SelectionChanged="ChangeMainSection">
                         <ComboBoxItem Content="Owned Events" FontSize="20"/>
                         <ComboBoxItem Content="Guest Events" FontSize="20" />
                         <ComboBoxItem Content="New event" FontSize="20" />
                         <ComboBoxItem Content="My profile" FontSize="20" />
+                        <ComboBoxItem Content="Logout" FontSize="20" />
                     </ComboBox>
 
                 </Border>
@@ -39,10 +172,9 @@
                 BorderThickness="0"  
                 VerticalContentAlignment="Center"  
                 Padding="10,0,0,0"   
-                Background="Transparent"  
-                Foreground="Black"  
+                Foreground="#6159d9"  
                 IsEditable="True"   
-                Margin="0" SelectionChanged="ChangeSection">
+                Margin="5,0,5,0" SelectionChanged="ChangeSection">
                     <ComboBoxItem Content="All" FontSize="20"/>
                     <ComboBoxItem Content="Open" FontSize="20" />
                     <ComboBoxItem Content="Closed" FontSize="20" />
@@ -50,7 +182,7 @@
                 
             </StackPanel>
 
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch">
+            <Border BorderBrush="#6159d9" BorderThickness="1" HorizontalAlignment="Stretch">
             </Border>
 
         </Grid>
@@ -62,67 +194,7 @@
 HorizontalContentAlignment="Stretch" Width="750" x:Name="eList" Padding="10,10,0,0"
                         >
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="8" Padding="4,0,4,0">
-                                <Grid Height="150">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="300"/>
-                                        <ColumnDefinition Width="270"/>
-                                        <ColumnDefinition Width="80"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-
-
-                                    
-                                    <TextBlock FontSize="18" Text="{Binding EventName}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock FontSize="15" Text="{Binding Detail}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
-                                    <TextBlock FontSize="18" Text="{Binding Location}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-                                    <TextBlock FontSize="18" Text="Open Till: " Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Bottom"/>
-                                    <TextBlock FontSize="18" Text="{Binding TillDate, StringFormat={}{0:yyyy-MM-dd}}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Bottom"/>
-                                    <Label FontSize="18" Content="Poll Options" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"/>
-                                    <ScrollViewer VerticalScrollBarVisibility="Auto"  Width="260"  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
-                                        <ItemsControl Width="auto" ItemsSource="{Binding eOptions}">
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Border BorderThickness="1" BorderBrush="Gray">
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition/>
-                                                            </Grid.ColumnDefinitions>
-
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition/>
-                                                            </Grid.RowDefinitions>
-
-                                                            <TextBlock FontSize="18" Text="{Binding DateSlot}" HorizontalAlignment="Left"/>
-                                                            <TextBlock FontSize="18" Text="{Binding TimeSlot}" HorizontalAlignment="Right"/>
-                                                        </Grid>
-                                                    </Border>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-
-                                        </ItemsControl>
-                                    </ScrollViewer>
-
-                                    <Button FontSize="18" Content="Details" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,-29,0" Grid.Row="0"
-                                                                                Command="{Binding DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-        CommandParameter="{Binding}"/>
-                                    <Button FontSize="18" Content="Delete" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,-29,0" Grid.Row="1" 
-                                            Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-        CommandParameter="{Binding}"/>
-                                    <Button FontSize="18" Content="Close" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,-29,0" Grid.Row="2" IsEnabled="{Binding IsOpened, Mode=OneWay}"
-                                            Command="{Binding DataContext.CloseCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-        CommandParameter="{Binding}"/>
-
-
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
+                        <StaticResource ResourceKey="DefaultTemplate" />
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 

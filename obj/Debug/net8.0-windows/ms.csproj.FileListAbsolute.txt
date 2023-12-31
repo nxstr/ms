@@ -50,3 +50,12 @@ C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\ms.genruntime
 C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\ref\ms.dll
 C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\NewEventPage.g.cs
 C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\NewEventPage.baml
+C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\VotePage.g.cs
+C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\VotePage.baml
+C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\MyProfilePage.g.cs
+C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\MyProfilePage.baml
+C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\RegisterPage.g.cs
+C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\RegisterPage.baml
+C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\Themes\ButtonStyles.baml
+C:\Users\Astrynx\Desktop\IUR\semestral\ms\obj\Debug\net8.0-windows\App.baml

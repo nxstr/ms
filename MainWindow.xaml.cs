@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ms.Utils;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,10 +17,12 @@ namespace ms
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Requests _r;
         public MainWindow()
         {
             InitializeComponent();
-            this.Content = new LoginUser();
+            _r = new Requests();
+            this.Content = new LogoutPage(_r);
         }
 
 

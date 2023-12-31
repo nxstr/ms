@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="ms.MyProfilePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ms"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="50" x:Key="Details">
+            <Label Content="Your firstname:" FontSize="20" Style="{StaticResource CommonLabel}"/>
+            <TextBox Text="{Binding AccountDetails.firstName, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+            <Label Content="Your lastname:" FontSize="20" Style="{StaticResource CommonLabel}"/>
+            <TextBox Text="{Binding AccountDetails.lastName, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+            <Label Content="Your username:" FontSize="20" Style="{StaticResource CommonLabel}"/>
+            <TextBox Text="{Binding AccountDetails.username, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+            <Label Content="Your email:" FontSize="20" Style="{StaticResource CommonLabel}"/>
+            <TextBox Text="{Binding AccountDetails.email, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="50" x:Key="Password">
+            <Label Content="Enter new password:" FontSize="20" Style="{StaticResource CommonLabel}"/>
+            <TextBox Text="{Binding NewPass, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+            <Label Content="Repeat password:" FontSize="20" Style="{StaticResource CommonLabel}"/>
+            <TextBox Text="{Binding RepeatPass, UpdateSourceTrigger=PropertyChanged}" FontSize="20" x:Name="TextBloxkRepeat"/>
+        </StackPanel>
+    </UserControl.Resources>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" Style="{StaticResource Header}">
+            <StackPanel Orientation="Horizontal" >
+                <Grid Width="780">
+                    <Border Height="50" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    </Border>
+                    <TextBlock Text="Profile Settings" FontSize="30" VerticalAlignment="Center" Style="{StaticResource HeaderText}" Margin="5,0,0,0"/>
+                    <Button Content="Change password" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="410,0,0,0" Command="{Binding ChangePassCommand}" x:Name="Change" Style="{StaticResource HeaderButtons}"/>
+                    <Button Content="Save" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="610,0,0,0" Command="{Binding SaveCommand}" Style="{StaticResource HeaderButtons}"/>
+                    <Button Content="Cancel" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Margin="690,0,0,0" Command="{Binding CancelCommand}" Style="{StaticResource HeaderButtons}"/>
+                </Grid>
+            </StackPanel>
+            <Border BorderBrush="#6159d9" BorderThickness="1" HorizontalAlignment="Stretch">
+            </Border>
+        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ContentControl x:Name="ProfilePanel"/>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

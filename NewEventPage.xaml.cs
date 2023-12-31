@@ -1,4 +1,5 @@
 ﻿using ms.Utils;
+using ms.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,13 +90,17 @@ namespace ms
                 {
                     return true;
                 }
+                else
+                {
+                    return false;
+                }
             }
             return NewEvent!=null;
         }
 
         private void CancelItem(object parameter)
         {
-            this.Content = new OwnedEventsPage(_r);
+            this.Content = new OwnedEventsPage(_r, false);
         }
 
         private bool CancelItemCanExecute(object parameter)

@@ -18,8 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ms.Utils;
 using System.ComponentModel;
+using ms.ViewModels;
 
 namespace ms
 {
@@ -32,7 +32,10 @@ namespace ms
         private RelayCommand _closeCommand;
         private RelayCommand _deleteCommand;
         private RelayCommand _detailsCommand;
+        private RelayCommand _voteCommand;
+        private RelayCommand _leaveCommand;
         private EventModel _selectedDetail;
+        private bool _isGuest;
 
         public ObservableCollection<EventModel> EventsList { get; set; }
             = new ObservableCollection<EventModel>();
@@ -73,6 +76,22 @@ namespace ms
             }
         }
 
+        public RelayCommand VoteCommand
+        {
+            get
+            {
+                return _voteCommand ?? (_voteCommand = new RelayCommand(VoteItem, VoteItemCanExecute));
+            }
+        }
+
+        public RelayCommand LeaveCommand
+        {
+            get
+            {
+                return _leaveCommand ?? (_leaveCommand = new RelayCommand(LeaveItem, LeaveItemCanExecute));
+            }
+        }
+
         public void OnPropertyChanged(string txt)
         {
 
@@ -84,7 +103,7 @@ namespace ms
             }
         }
 
-        public OwnedEventsPage(Requests r)
+        public OwnedEventsPage(Requests r, bool isGuest)
         {
             InitializeComponent();
             _r = r;
@@ -92,6 +111,11 @@ namespace ms
             getAllOwnedEvents();
             sortingBox.SelectedIndex = 0;
             dropdownMenu.SelectedIndex = 0;
+            _isGuest = isGuest;
+            if(_isGuest)
+            {
+                dropdownMenu.SelectedIndex = 1;
+            }
         }
 
         public void ChangeSection(object sender, SelectionChangedEventArgs e)
@@ -99,7 +123,14 @@ namespace ms
 
             if (sortingBox.SelectedIndex == 0)
             {
-                getAllOwnedEvents();
+                if (_isGuest)
+                {
+                    getAllGuestEvents();
+                }
+                else
+                {
+                    getAllOwnedEvents();
+                }
             }
             else if (sortingBox.SelectedIndex == 1)
             {
@@ -116,19 +147,63 @@ namespace ms
 
             if (dropdownMenu.SelectedIndex == 0)
             {
+                eList.ItemTemplate = FindResource("DefaultTemplate") as DataTemplate;
                 getAllOwnedEvents();
+                _isGuest = false;
+                sortingBox.SelectedIndex = 0;
+            }
+            else if (dropdownMenu.SelectedIndex == 1)
+            {
+                eList.ItemTemplate = FindResource("CustomTemplate") as DataTemplate;
+                getAllGuestEvents();
+                _isGuest = true;
+                sortingBox.SelectedIndex = 0;
             }
             else if (dropdownMenu.SelectedIndex == 2)
             {
                 this.Content = new NewEventPage(_r);
             }
-            
+            else if (dropdownMenu.SelectedIndex == 3)
+            {
+                this.Content = new MyProfilePage(_r);
+            }
+            else if (dropdownMenu.SelectedIndex == 4)
+            {
+                var res = _r.Logout();
+                if (res)
+                {
+                    this.Content = new LogoutPage(_r);
+                }
+            }
+
         }
 
         public void getAllOwnedEvents()
         {
 
             var res = _r.GetWebsiteDataAsync();
+            EventsList.Clear();
+            foreach (var item in res)
+            {
+                if (item.openDueTo <= DateTime.Now)
+                {
+
+                    item.IsOpened = false;
+                }
+                else
+                {
+                    item.IsOpened = true;
+                }
+                EventsList.Add(item);
+            }
+            eList.ItemsSource = EventsList;
+
+        }
+
+        public void getAllGuestEvents()
+        {
+
+            var res = _r.GetGuestEvents();
             EventsList.Clear();
             foreach (var item in res)
             {
@@ -226,13 +301,49 @@ namespace ms
             var selectedEvent = parameter as EventModel;
             if (selectedEvent != null)
             {
-                this.Content = new EventInfoPage(_r, selectedEvent);
+                this.Content = new EventInfoPage(_r, selectedEvent, _isGuest);
             }
         }
 
         private bool DetailsItemCanExecute(object parameter)
         {
             return parameter is EventModel;
+        }
+
+        private void VoteItem(object parameter)
+        { 
+            var selectedEvent = parameter as EventModel;
+            if (selectedEvent != null)
+            {
+                this.Content = new VotePage(_r, selectedEvent, new PollOptionModel(), _isGuest);
+            }
+        }
+
+        private bool VoteItemCanExecute(object parameter)
+        {
+            return parameter is EventModel;
+        }
+
+        private void LeaveItem(object parameter)
+        {
+            var res = false;
+            var selectedEvent = parameter as EventModel;
+            res = _r.LeaveEvent(selectedEvent.id);
+            if (res)
+            {
+                this.Content = new OwnedEventsPage(_r, _isGuest);
+            }
+
+        }
+
+        private bool LeaveItemCanExecute(object parameter)
+        {
+            var selectedEvent = parameter as EventModel;
+            if (selectedEvent.TillDate >= DateTime.Now)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

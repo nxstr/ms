@@ -1,5 +1,7 @@
 # Meeting Scheduler
 
+Frontendová část aplikace MeetingScheduler, vytvořená v rámci semestrální práce. Uživatelské rozhraní je napsáno v jazyce C# pomocí technologie WPF.
+
 ## Application run
 Release verze aplikace se nachází ve složce: ..\ms\bin\Release\net8.0-windows soubor ms.exe.
 
